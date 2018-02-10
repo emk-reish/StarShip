@@ -37,16 +37,25 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider c) {
+	void OnCollisionEnter(Collision c) {
 		GameObject other = c.gameObject;
+		Debug.Log(other.name);
 		if(other.tag == "Laser") {
 			// delete both objects
 			DestroyEnemy(true);
 			Destroy(other.transform.parent.gameObject);
 		} else if(other.tag == "Player" || other.name == "Ship") {
 			other.GetComponent<ShipBehaviour>().EnemyHitShip(damage);
+			Debug.Log(c.contacts[0].point);
+			PlayExplosion(c.contacts[0].point);
 			DestroyEnemy(false);
 		}
+	}
+
+	void PlayExplosion(Vector3 pt) { 
+		Debug.Log(pt);
+		Instantiate(Resources.Load("GameAssets/Explosion"), pt, transform.rotation);
+		// explosion.
 	}
 
 	void DestroyEnemy(bool hitByLaser = false) {

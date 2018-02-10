@@ -71,7 +71,15 @@ public class ShipBehaviour : MonoBehaviour {
 		// stop creating enemies
 		GameObject.Find("EnemySpawner").GetComponent<EnemySpawnerBehaviour>().StopSpawning();
 
-		// Game Over message appears
+		// Make the player explode!
+		Instantiate(Resources.Load("GameAssets/Explosion"), transform.position, transform.rotation);
+		
+		// remove ship and light
+		MeshRenderer mr = GetComponent<MeshRenderer>();
+		mr.enabled = false;
+		transform.GetChild(0).gameObject.SetActive(false);
+
+		// Game Over message appears 
 		GameObject.Find("GameOver").GetComponent<MeshRenderer>().enabled = true;
 		string stats = GameObject.Find("EnemySpawner").GetComponent<EnemySpawnerBehaviour>().MakeEndGameMessages();
 		stats += "Total Shots Fired: " + numLaser + "\n\r";

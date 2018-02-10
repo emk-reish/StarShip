@@ -14,13 +14,4 @@ public class LaserBehaviour : MonoBehaviour {
 		}
 		frame++;
 	}
-
-	void OnTriggerEnter(Collider c) {
-		GameObject enemy = c.gameObject;
-		if(enemy.tag == "Enemy") {
-			// delete both objects
-			Destroy(gameObject);
-			Destroy(enemy);
-		}
-	}
 }

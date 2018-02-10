@@ -61,7 +61,6 @@ public class EnemySpawnerBehaviour : MonoBehaviour {
 		enemy.GetComponent<EnemyBehaviour>().damage = dmg;
 
 		enemy.name = "Enemy_" + dmg + "_" + numEnemiesTotal;
-		enemy.tag = "CanDestroy";
 		
 		numEnemiesTotal++;
 		numAlive++;
