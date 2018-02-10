@@ -59,9 +59,9 @@ public class EnemySpawnerBehaviour : MonoBehaviour {
 		GameObject enemy = enemyT.gameObject;
 		enemy.AddComponent<EnemyBehaviour>();
 		enemy.GetComponent<EnemyBehaviour>().damage = dmg;
-		enemy.AddComponent<MeshCollider>();
-		enemy.name = "Enemy" + dmg + "_" + numEnemiesTotal;
-		enemy.tag = "Enemy";
+
+		enemy.name = "Enemy_" + dmg + "_" + numEnemiesTotal;
+		enemy.tag = "CanDestroy";
 		
 		numEnemiesTotal++;
 		numAlive++;

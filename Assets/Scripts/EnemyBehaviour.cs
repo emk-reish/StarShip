@@ -51,6 +51,10 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	void DestroyEnemy(bool hitByLaser = false) {
 		GameObject.Find("EnemySpawner").GetComponent<EnemySpawnerBehaviour>().UpdateEnemyCounts(false, hitByLaser);
+		if(hitByLaser) { // add explosion to scene
+			GameObject explosion = (GameObject) Instantiate(Resources.Load("GameAssets/Explosion"), transform.position, transform.rotation);
+			Destroy(explosion, 1.75f); // remove explosion after time
+		}
 		Destroy(gameObject);
 	}
 
