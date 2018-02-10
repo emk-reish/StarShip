@@ -27,7 +27,7 @@ public class ShipChooseBehaviour : MonoBehaviour {
 		GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		plane.name = ship.name.Replace("(Clone)", "");
 		plane.transform.parent = gameObject.transform;
-		plane.transform.position = new Vector3(ship.position.x, 0, 0);
+		plane.transform.position = new Vector3(ship.position.x, -0.25f, -5);
 		plane.transform.eulerAngles = new Vector3(0,90,-90);
 		plane.transform.localScale = new Vector3(0.5f, 1, 0.5f);
 		plane.GetComponent<MeshRenderer>().enabled = false;

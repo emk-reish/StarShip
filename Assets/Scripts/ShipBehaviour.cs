@@ -40,20 +40,7 @@ public class ShipBehaviour : MonoBehaviour {
 
 	// Creates a laser gameObject which damages any enemies it hits and is destroyed after some time
 	void FireWeapon() {
-		GameObject laser = new GameObject("laser" + numLaser);
-
-		// set Player as parent to use it's positioning
-		laser.transform.SetParent(GameObject.Find("Player").transform, false);
-		laser.transform.Translate(0,5,0);
-
-		laser.AddComponent<LaserBehaviour>();
-		laser.AddComponent<SphereCollider>();
-		laser.GetComponent<SphereCollider>().isTrigger = true;
-		laser.AddComponent<Rigidbody>();
-		laser.GetComponent<Rigidbody>().useGravity = false;
-
-		laser.transform.parent = null;
-
+		Instantiate(Resources.Load("GameAssets/Laser"), transform.position, transform.parent.transform.rotation);
 		numLaser++;
 	}
 
@@ -104,10 +91,5 @@ public class ShipBehaviour : MonoBehaviour {
 	// goes back to main menu
 	void GameOver() {
 		SceneManager.LoadScene("MainMenu");
-	}
-
-	void OnTriggerEnter(Collider c) {
-		GameObject other = c.gameObject;
-		Debug.Log("hit " + other.name);
 	}
 }

@@ -41,9 +41,16 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float horizontalSpeed = Input.GetAxis("Horizontal");
+		// forward or backward (at one half speed)
         float verticalSpeed = Input.GetAxis("Vertical");
-		transform.Translate(0, verticalSpeed * speed, 0);
+		if(verticalSpeed < 0) { // backwards -> slower
+			transform.Translate(0, verticalSpeed * speed / 2, 0);
+		} else { // forward
+			transform.Translate(0, verticalSpeed * speed, 0);
+		}
+
+		// direction (changes angel)
+		float horizontalSpeed = Input.GetAxis("Horizontal");
 		transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - horizontalSpeed * agility);
 	}
 

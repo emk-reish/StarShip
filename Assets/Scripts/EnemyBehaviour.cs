@@ -19,8 +19,6 @@ public class EnemyBehaviour : MonoBehaviour {
 
 		shipT = GameObject.Find("Ship").transform;
 
-		rb = this.GetComponent<Rigidbody>();
-
 		InvokeRepeating("ChangeDirection", 0.0f, .1f);
 	}
 
@@ -44,7 +42,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		if(other.tag == "Laser") {
 			// delete both objects
 			DestroyEnemy(true);
-			Destroy(other);
+			Destroy(other.transform.parent.gameObject);
 		} else if(other.tag == "Player" || other.name == "Ship") {
 			other.GetComponent<ShipBehaviour>().EnemyHitShip(damage);
 			DestroyEnemy(false);
